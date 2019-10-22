@@ -1,21 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Shelf from './Shelf'
 import PropTypes from 'prop-types'
 
-class MainPage extends Component {
-  static propTypes = {
-    books: PropTypes.array.isRequired,
-    onChangeShelf: PropTypes.func.isRequired,
-  }
+MainPage.PropTypes = {
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
+}
 
-  render() {
+function MainPage (props) { 
     const shelves = {
         currentlyReading: 'Currently Reading',
         wantToRead: 'Want to Read',
         read: 'Read'
     }
-
     return (
       <div className='list-books'>
         <div className='list-books-title'>
@@ -28,8 +26,8 @@ class MainPage extends Component {
                 key = {shelf}
                 shelfShortname = {shelf}
                 shelfDescription = {shelves[shelf]}
-                books = {this.props.books}
-                onChangeShelf = {this.props.onChangeShelf}                    
+                books = {props.books}
+                onChangeShelf = {props.onChangeShelf}                    
               />
             )}
           </div>
@@ -40,6 +38,5 @@ class MainPage extends Component {
       </div>
     )
   }
-}
 
-export default MainPage;  
+export default MainPage
