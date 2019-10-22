@@ -17,7 +17,7 @@ class SearchPage extends Component {
 
   updateQuery = (query) => {
     this.setState(
-      { query: query.trim() },
+      { query: query },
         () => {this.booksSearch(this.state.query)}
     )
   }
@@ -25,7 +25,7 @@ class SearchPage extends Component {
   // Wrapper for BooksAPI.search
   booksSearch = (query) => {
     if (query.length > 0) {
-      BooksAPI.search(query).then((booksFound) => {
+      BooksAPI.search(query.trim()).then((booksFound) => {
         if (booksFound.length > 0) {
           //Book component required values
           booksFound = booksFound
