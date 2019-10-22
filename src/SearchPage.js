@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 import PropTypes from 'prop-types'
+import DebounceInput from 'react-debounce-input';
 
 class SearchPage extends Component {
   static propTypes = {
@@ -68,11 +69,13 @@ class SearchPage extends Component {
           <div className="search-books-bar">
             <Link to='/' className='close-search'>Back to main page</Link>
             <div className='search-books-input-wrapper'>
-              <input 
-                type='text' 
+              {/* Improve search functionality by avoiding excessive books API requests */}
+              <DebounceInput
+                debounceTimeout={1000}
+                type='text'
                 placeholder='Search by title or author'
                 value={query}
-                onChange={(event) => this.updateQuery(event.target.value)}
+                onChange={event => this.updateQuery(event.target.value)}
               />
             </div>
         </div>
